@@ -1,0 +1,13 @@
+def minimumLoss(price):
+    indexed_prices = [(p, i) for i, p in enumerate(price)]
+    indexed_prices.sort(key=lambda x: x[0])
+
+    min_loss = float('inf')
+    for i in range(len(indexed_prices) - 1):
+        lower_price, lower_index = indexed_prices[i]
+        higher_price, higher_index = indexed_prices[i + 1]
+        if higher_index < lower_index:
+            loss = higher_price - lower_price
+            if loss < min_loss:
+                min_loss = loss
+    return min_loss
